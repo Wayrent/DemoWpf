@@ -276,6 +276,10 @@ public partial class HotelManagementContext : DbContext
             entity.Property(e => e.Username)
                 .HasMaxLength(255)
                 .HasColumnName("username");
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id)
+                    .HasColumnName("id")
+                    .ValueGeneratedOnAdd(); // Исправление ошибки автоинкремента
         });
 
         modelBuilder.Entity<Лист1>(entity =>

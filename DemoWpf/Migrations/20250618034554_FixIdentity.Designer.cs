@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoWpf.Migrations
 {
     [DbContext(typeof(HotelManagementContext))]
-    [Migration("20250617164154_RestoreUsers")]
-    partial class RestoreUsers
+    [Migration("20250618034554_FixIdentity")]
+    partial class FixIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -354,8 +354,11 @@ namespace DemoWpf.Migrations
             modelBuilder.Entity("DemoWpf.Models.User", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()

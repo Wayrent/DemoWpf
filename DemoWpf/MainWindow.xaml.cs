@@ -66,8 +66,6 @@ namespace DemoWpf
                     if (user.Password == password)
                     {
                         user.LastLoginDate = DateTime.Now;
-
-
                         user.FailedLoginAttempts = 0;
                         await context.SaveChangesAsync();
 
@@ -77,15 +75,18 @@ namespace DemoWpf
                         {
                             var adminWindow = new AdminWindow();
                             adminWindow.Show();
+
+                            this.Close();
                         }
                         else
                         {
                             var mainWindow = new MainWindow();
                             mainWindow.Show();
-                        }
 
-                        this.Close();
+                            this.Close();
+                        }
                     }
+
                     else
                     {
                         user.FailedLoginAttempts++;

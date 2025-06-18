@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DemoWpf.Migrations
 {
     /// <inheritdoc />
-    public partial class RestoreUsers : Migration
+    public partial class FixIdentity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -104,7 +104,8 @@ namespace DemoWpf.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     lastname = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     firstname = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     username = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
